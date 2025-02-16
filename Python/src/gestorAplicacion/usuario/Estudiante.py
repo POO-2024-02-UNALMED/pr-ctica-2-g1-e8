@@ -1,3 +1,7 @@
+from gestorAplicacion.administracion.Grupo import Grupo
+from gestorAplicacion.usuario.Usuario import Usuario
+from gestorAplicacion.administracion.Horario import Horario
+
 class Estudiante(Usuario):
     _estudiantes = []
     def __init__(
