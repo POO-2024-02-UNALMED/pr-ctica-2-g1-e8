@@ -123,9 +123,9 @@ class Coordinador(Usuario):
         resultado[1] = horario
         resultado[2] = materiaObstaculo
 
-        return resultado        return resultado 
+        return resultado
     
-     
+    
     def eliminarMateria(self, materia):
         if materia in Materia.getMateriasTotales():
             Coordinador.restaurarMateria(materia)
