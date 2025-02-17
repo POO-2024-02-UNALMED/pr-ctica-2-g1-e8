@@ -123,4 +123,93 @@ class Coordinador(Usuario):
         resultado[1] = horario
         resultado[2] = materiaObstaculo
 
-        return resultado
+        return resultado        return resultado 
+    
+     
+    def eliminarMateria(self, materia):
+        if materia in Materia.getMateriasTotales():
+            Coordinador.restaurarMateria(materia)
+            Materia.getMateriasTotales().remove(materia)
+        else:
+            raise CampoVacio("Se ha ingresado un valor inválido")
+
+    
+    def agregarMateria(self, nombre, codigo, descripcion, creditos, facultad, prerrequisitos):
+        nombreMaterias = []
+
+        for materia in Materia.getMateriasTotales():
+            nombreMaterias.append(materia.getNombre())
+
+        if nombre not in nombreMaterias:
+            nMateria = Materia(
+                nombre, codigo, descripcion, creditos, facultad, prerrequisitos
+            )
+
+    @classmethod
+    def candidatoABeca(cls,estudiante, tipoDeBeca):
+        if tipoDeBeca.getCupos() > 0:
+            if (
+                estudiante.getPromedio() >= tipoDeBeca.getPromedioRequerido()
+                and estudiante.getAvance() >= tipoDeBeca.getAvanceRequerido()
+                and estudiante.getCreditos()
+                >= tipoDeBeca.getCreditosInscritosRequeridos()
+                and estudiante.getEstrato() <= tipoDeBeca.getEstratoMinimo()
+            ):
+                if tipoDeBeca.getNecesitaRecomendacion():
+                    if Profesor.recomendarEstudiante(estudiante):
+                        return True
+                    else:
+                        return False
+                else:
+                    return True  # No necesita recomendación, pero cumple los demás requisitos
+            else:
+                return False
+        else:
+            return False
+    @classmethod
+    def mostrarFacultades(cls):
+        retorno = ""
+        i = 1
+        for facultad in Coordinador._facultades:
+            retorno += str(i) + ". " + facultad + "\n"
+            i += 1
+        return retorno
+
+    def __str__(self):
+        return "Nombre Coordinador: " + self.getNombre() + "\nDocumento: " + self.getId()
+
+    # Setters y Getters
+
+    @classmethod
+    def getLimitesCreditos(cls):
+        return cls._LIMITES_CREDITOS
+
+    @classmethod
+    def getCoordinadoresTotales(cls):
+        return cls._coordinadoresTotales
+
+    @classmethod
+    def setCoordinadoresTotales(cls, coordinadores):
+        cls._coordinadoresTotales = coordinadores
+
+    @classmethod
+    def getFacultades(cls):
+        return cls._facultades
+
+    @classmethod
+    def setFacultades(cls, facultades):
+        cls._facultades = facultades
+    
+    @classmethod
+    def mostrarBecas(cls):
+        i = 1
+        for beca in Beca.getBecas():
+            a = beca.getConvenio()
+    
+    @classmethod
+    def getUsuarioIngresado(cls):
+        return cls._usuarioIngresado
+    
+    @classmethod
+    def setUsuarioIngresado(cls, usuario):
+        cls._usuarioIngresado = usuario
