@@ -1,12 +1,12 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-#from gestorGrafico.FieldFrame import FieldFrame
+from excepciones.ErrorManejo import *
+from gestorGrafico.FieldFrame import FieldFrame
 from gestorAplicacion.administracion.Materia import Materia
 from gestorAplicacion.administracion.Salon import Salon
 from gestorAplicacion.usuario.Profesor import Profesor
-#from excepciones.ErrorManejo import *
-#from excepciones.ObjetoInexistente import *
+from excepciones.ObjetoInexistente import *
 
 class agregarGrupo(Frame):
     def __init__(self, ventana):
