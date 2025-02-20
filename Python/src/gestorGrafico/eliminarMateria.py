@@ -8,8 +8,7 @@ from excepciones.ObjetoInexistente import *
 import sys
 import os
 
-#sys.path.append(os.path.join(os.path.dirname(__file__), "../gestorAplicacion/administracion/"))
-#from Materia import Materia
+
 
 
 class eliminarMateria(Frame):
@@ -51,7 +50,6 @@ class eliminarMateria(Frame):
         textoM.grid(row=1, column=0, padx=10, pady=8)
 
         valores = Materia.listaNombresMaterias()
-        #texto = StringVar(subFrame, value="Seleccione una materia")
         box = ttk.Combobox(subFrame, values=valores, font=("Arial", 10))
         box.grid(row=1, column=1, padx=10, pady=8)
 
