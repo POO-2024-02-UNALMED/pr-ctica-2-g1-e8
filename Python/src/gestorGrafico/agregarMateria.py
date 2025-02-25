@@ -4,11 +4,12 @@ from tkinter import messagebox
 from gestorGrafico.FieldFrame import FieldFrame
 from gestorAplicacion.administracion.Materia import Materia
 from gestorAplicacion.usuario.Coordinador import Coordinador
-from excepciones.ObjetoInexistente import *
+from gestorAplicacion.usuario.Coordinador import Coordinador
 from excepciones.ErrorManejo import *
+from excepciones.ObjetoInexistente import *
 
 class agregarMateria(Frame):
-    def __iniy__(self, ventana):
+    def __init__(self, ventana):
         super().__init__(ventana)
         self.config(highlightbackground="#089970",highlightthickness=3)
         self.pack(expand=True)
@@ -28,7 +29,12 @@ class agregarMateria(Frame):
                 descripcion = descripcionE.get()
                 creditos = int(creditosE.get())
                 nPrer = int(prerrequisitosE.get())
-                if nPrer > 0:
+                if nPrer<0 or nPrer>5:
+                    raise CampoInvalido()
+                prerrequisitos = []
+                facultad = facuE.get()
+
+                if nPrer>0:
                     boxes = []
                     sFrame.pack_forget()
 
@@ -39,7 +45,6 @@ class agregarMateria(Frame):
 
                     tituloV = Label(subFrame, text="Materia", font=("Arial", 11), fg="white", bg="#089970")
                     tituloV.grid(row=0, column=1, padx=10, pady=8)
-
                     for i in range(nPrer):
 
                         lCriterio = Label(subFrame, text="Prerrequisito {}".format(str(i+1)), font=("Arial", 11), fg="white", bg="#089970")
