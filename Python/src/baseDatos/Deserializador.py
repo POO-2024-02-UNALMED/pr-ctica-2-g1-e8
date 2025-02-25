@@ -34,7 +34,7 @@ class Deserializador:
         Beca.setBecas(cls.deserializar("Becas"))
         Grupo.setGruposTotales(cls.deserializar("Grupos"))
         #Horario.setHorariosTotales(cls.deserializar("Horarios"))
-        Horario._horariosTotalesorariosTotales(cls.deserializar("Horarios"))
+        Horario._horariosTotales(cls.deserializar("Horarios"))
         Materia.setMateriasTotales(cls.deserializar("Materias"))
         Salon.setSalones(cls.deserializar("Salones"))
         Coordinador.setCoordinadoresTotales(cls.deserializar("Coordinadores"))
