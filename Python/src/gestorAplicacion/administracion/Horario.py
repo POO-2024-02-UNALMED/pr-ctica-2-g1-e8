@@ -77,7 +77,7 @@ class Horario:
                 return False
         return True
     
-    """def mostrarHorario(self) -> str:
+    def mostrarHorario(self) -> str:
         horario = "HORA        LUNES        MARTES        MIERCOLES        JUEVES        VIERNES        SABADO        DOMINGO\n"
 
         for i in range(24):
@@ -102,7 +102,7 @@ class Horario:
                 espacios = " " * cantidad_espacios
                 horario += materia + espacios
             horario += "\n"
-        return horario"""
+        return horario
     
     def mostrarHorario2(self) -> str:
         horario = "HORA        LUNES        MARTES        MIERCOLES        JUEVES        VIERNES        SABADO        DOMINGO\n"
