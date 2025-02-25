@@ -15,7 +15,7 @@ from gestorAplicacion.usuario.Profesor import Profesor
 from gestorAplicacion.usuario.Usuario import Usuario
 
 from baseDatos.Serializador import Serializador
-from baseDatos.Desealizador import Deserializador 
+from baseDatos.Deserializador import Deserializador 
 
 
 class MainWin(Tk):
