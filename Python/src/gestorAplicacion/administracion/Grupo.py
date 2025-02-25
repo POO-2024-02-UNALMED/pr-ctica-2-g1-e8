@@ -1,6 +1,3 @@
-from Salon import Salon
-from gestorAplicacion.usuario.Estudiante import Estudiante
-
 class Grupo:
     _gruposTotales = []
 
