@@ -3,15 +3,14 @@
 from enum import Enum
 
 class DiaSemana(Enum):
-    
-    #indice y tamaño
-    LUNES = (0,5)
-    MARTES = (1,6)
-    MIERCOLES = (2,9)
-    JUEVES = (3,6)
-    VIERNES = (4,7)
-    SABADO = (5,6)
-    DOMINGO = (6,7)
+    # Indice y lenght
+    LUNES = (0, 5)
+    MARTES = (1, 6)
+    MIERCOLES = (2, 9)
+    JUEVES = (3, 6)
+    VIERNES = (4, 7)
+    SABADO = (5, 6)
+    DOMINGO = (6, 7)
 
     @classmethod
     def getDiaPorIndice(cls, indice) -> str:
@@ -19,18 +18,20 @@ class DiaSemana(Enum):
             if dia.value[0] == indice:
                 return dia.name
         return None
-    
-class Horario:
 
+
+class Horario:
+    
     _horariosTotales = []
 
     def __init__(self, diaSemana=0, horaInicio=0, horaFinal=0, grupo=""):
-        self._horario = [[None]*24 for _ in range(7)]
+        self._horario = [[None] * 24 for _ in range(7)]
         self._grupoContenidos = []
         if grupo != "":
             self._grupoContenidos.append(grupo)
             for hora in range(horaInicio, horaFinal):
                 self._horario[diaSemana][hora] = grupo
+
 
     def ocuparHorario(self, grupo, horario=None) -> None:
         if horario == None:
@@ -56,27 +57,29 @@ class Horario:
                 if not isinstance(pGrupo,str):
                     if pGrupo.getNumero() == grupoEliminado.getNumero():
                         if pGrupo.getMateria().getNombre()==grupoEliminado.getMateria().getNombre():
-                            self._grupoContenidos.remove(pGrupo)
+                            self._grupoContenidos.remove(pGrupo)    
 
     def vaciarHorario(self, grupos) -> None:
         for grupo in grupos:
             self.liberarHorario(grupo.getHorario())
 
     def comprobarDisponibilidadUna(self, clase) -> bool:
-        dia = int(clase[0]) - 1
+        # print("esto es: "+str(clase))
+        # clase = clase[0]
+        dia = int(clase[0])-1
         horaInicio = int(clase[2:4])
         horaFinal = int(clase[5:7])
         for hora in range(horaInicio, horaFinal):
             if self._horario[dia][hora] is not None:
                 return False
         return True
-    
+
     def comprobarDisponibilidad(self, clases) -> bool:
         for clase in clases:
             if not self.comprobarDisponibilidadUna(clase):
                 return False
         return True
-    
+
     def mostrarHorario(self) -> str:
         horario = "HORA        LUNES        MARTES        MIERCOLES        JUEVES        VIERNES        SABADO        DOMINGO\n"
 
@@ -131,3 +134,17 @@ class Horario:
                 horario += materia + espacios
             horario += "\n"
         return horario
+
+    def getGrupoContenidos(self):
+        return self._grupoContenidos
+
+    def setGrupoContenidos(self, grupoContenidos):
+        self._grupoContenidos = grupoContenidos
+
+    @classmethod
+    def getHorariosTotales(cls):
+        return cls._horariosTotales
+
+    @classmethod
+    def setHorariosTotales(cls, horarios):
+        cls._horariosTotales = horarios
